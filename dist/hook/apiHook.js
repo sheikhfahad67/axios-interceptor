@@ -86,7 +86,6 @@ const useAxiosInterceptor = () => {
   return {
     data,
     isPending,
-    error,
     apiHandler
   };
 };
