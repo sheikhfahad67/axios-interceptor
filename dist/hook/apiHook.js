@@ -22,37 +22,37 @@ const useAxiosInterceptor = () => {
   const [isPending, setIsPending] = (0, _react.useState)(undefined);
   const [error, setError] = (0, _react.useState)(null);
 
-  const successHandler = (res, message, delay) => {
+  const successHandler = (res, config) => {
     setData(res.data);
     setIsPending(false);
 
-    _reactToastify.toast.success(message || 'Success', {
-      position: 'top-right',
-      autoClose: delay || 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
+    _reactToastify.toast.success((config === null || config === void 0 ? void 0 : config.message) || 'Success', {
+      position: config === null || config === void 0 ? void 0 : config.tostPosition,
+      autoClose: (config === null || config === void 0 ? void 0 : config.delay) || 5000,
+      hideProgressBar: config === null || config === void 0 ? void 0 : config.hideProgressBar,
+      closeOnClick: config.closeOnClick,
+      pauseOnHover: config === null || config === void 0 ? void 0 : config.pauseOnHover,
+      draggable: config.draggable,
       progress: undefined,
       rtl: false,
-      theme: 'colored'
+      theme: config.theme
     });
   };
 
-  const errorHandler = (error, message, delay) => {
+  const errorHandler = (error, config) => {
     setError(error);
     setIsPending(false);
 
-    _reactToastify.toast.error(message || JSON.stringify(error.messages[0]), {
-      position: 'top-right',
-      autoClose: delay || 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
+    _reactToastify.toast.error((config === null || config === void 0 ? void 0 : config.message) || JSON.stringify(error.messages[0]), {
+      position: config === null || config === void 0 ? void 0 : config.tostPosition,
+      autoClose: (config === null || config === void 0 ? void 0 : config.delay) || 5000,
+      hideProgressBar: config === null || config === void 0 ? void 0 : config.hideProgressBar,
+      closeOnClick: config.closeOnClick,
+      pauseOnHover: config === null || config === void 0 ? void 0 : config.pauseOnHover,
+      draggable: config.draggable,
       progress: undefined,
       rtl: false,
-      theme: 'colored'
+      theme: config.theme
     });
   };
 
@@ -63,18 +63,18 @@ const useAxiosInterceptor = () => {
 
         if ((config === null || config === void 0 ? void 0 : config.method) !== 'get' && (config === null || config === void 0 ? void 0 : config.method) !== 'delete') {
           return _axiosInterceptor.http[config === null || config === void 0 ? void 0 : config.method](config === null || config === void 0 ? void 0 : config.url, config === null || config === void 0 ? void 0 : config.data).then(res => {
-            successHandler(res, config === null || config === void 0 ? void 0 : config.successMessage, config === null || config === void 0 ? void 0 : config.delay);
+            successHandler(res, config);
             resolve(true);
           }).catch(error => {
-            errorHandler(error, config === null || config === void 0 ? void 0 : config.errorMessage, config === null || config === void 0 ? void 0 : config.delay);
+            errorHandler(error, config);
             reject(false);
           });
         } else {
           _axiosInterceptor.http[config === null || config === void 0 ? void 0 : config.method](config === null || config === void 0 ? void 0 : config.url).then(res => {
-            successHandler(res, config === null || config === void 0 ? void 0 : config.successMessage, config === null || config === void 0 ? void 0 : config.delay);
+            successHandler(res, config);
             resolve(true);
           }).catch(error => {
-            errorHandler(error, config === null || config === void 0 ? void 0 : config.errorMessage, config === null || config === void 0 ? void 0 : config.delay);
+            errorHandler(error, config);
             reject(false);
           });
         }
