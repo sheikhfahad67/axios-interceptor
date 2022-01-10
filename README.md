@@ -1,4 +1,5 @@
 # axios-interceptor-hooks
+![npm](https://img.shields.io/badge/axios%20interceptor-axios-green)
 
 React hooks for [axios] with built in react-tostify integration. Simple to use with minimum configuration.
 
