@@ -51,7 +51,7 @@ export const useAxiosInterceptor = () => {
           return http[config?.method](config?.url, config?.data)
             .then(res => {
               successHandler(res, config);
-              resolve(true);
+              resolve(res.data);
             })
             .catch(error => {
               errorHandler(error, config);
@@ -61,7 +61,7 @@ export const useAxiosInterceptor = () => {
           http[config?.method](config?.url)
             .then(res => {
               successHandler(res, config);
-              resolve(true);
+              resolve(res.data);
             })
             .catch(error => {
               errorHandler(error, config);

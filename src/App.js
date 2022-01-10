@@ -22,7 +22,10 @@ function App() {
   };
 
   const getTodosData = async () => {
-    await apiHandler(config);
+    const res = await apiHandler(config);
+    console.log('====================================');
+    console.log(res);
+    console.log('====================================');
   };
 
   useEffect(() => {

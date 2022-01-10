@@ -68,7 +68,7 @@ const useAxiosInterceptor = () => {
         if ((config === null || config === void 0 ? void 0 : config.method) !== 'get' && (config === null || config === void 0 ? void 0 : config.method) !== 'delete') {
           return _axiosInterceptor.http[config === null || config === void 0 ? void 0 : config.method](config === null || config === void 0 ? void 0 : config.url, config === null || config === void 0 ? void 0 : config.data).then(res => {
             successHandler(res, config);
-            resolve(true);
+            resolve(res.data);
           }).catch(error => {
             errorHandler(error, config);
             reject(false);
@@ -76,7 +76,7 @@ const useAxiosInterceptor = () => {
         } else {
           _axiosInterceptor.http[config === null || config === void 0 ? void 0 : config.method](config === null || config === void 0 ? void 0 : config.url).then(res => {
             successHandler(res, config);
-            resolve(true);
+            resolve(res.data);
           }).catch(error => {
             errorHandler(error, config);
             reject(false);
