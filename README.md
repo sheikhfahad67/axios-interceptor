@@ -2,7 +2,7 @@
 
 React hooks for [axios] with built in react-tostify integration. Simple to use with minimum configuration.
 
-![axios-interceptor-hook]("https://raw.githubusercontent.com/sheikhfahad67/axios-interceptor/master/.github/images/axios-interceptor-hook.gif", "axios-interceptor-hook")
+![axios-interceptor-hook](https://raw.githubusercontent.com/sheikhfahad67/axios-interceptor/master/.github/images/axios-interceptor-hook.gif "axios-interceptor-hook")
 
 ## Features
 
