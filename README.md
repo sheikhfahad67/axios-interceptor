@@ -1,9 +1,10 @@
 # axios-interceptor-hooks
+
 ![npm](https://img.shields.io/badge/axios%20interceptor-axios-green)
 
 React hooks for [axios] with built in react-tostify integration. Simple to use with minimum configuration.
 
-![axios-interceptor-hook](https://raw.githubusercontent.com/sheikhfahad67/axios-interceptor/master/.github/images/axios-interceptor-hook.gif "axios-interceptor-hook")
+![axios-interceptor-hook](https://raw.githubusercontent.com/sheikhfahad67/axios-interceptor/master/.github/images/axios-interceptor-hook.gif 'axios-interceptor-hook')
 
 ## Features
 
@@ -28,10 +29,12 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const { data, isPending, apiHandler } = useAxiosInterceptor();
+  // with toast message
   const config = {
     method: 'get',
     url: '/todos',
     delay: 4000,
+    displayToast: true,
     successMessage: 'Todos data retrieve',
     errorMessage: 'Todos data fetch error',
     toastPosition: 'top-right',
@@ -41,6 +44,15 @@ function App() {
     draggable: true,
     theme: 'colored',
   };
+
+  // without toast message
+  // const config = {
+  //   method: 'get',
+  //   url: '/todos',
+  //   delay: 4000,
+  //   displayToast: false
+  // }
+
   const getTodosData = async () => {
     await apiHandler(config);
   };

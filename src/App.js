@@ -10,14 +10,15 @@ function App() {
     method: 'get',
     url: '/todos',
     delay: 4000,
-    successMessage: 'Todos data retrieve',
-    errorMessage: 'Todos data fetch error',
-    toastPosition: 'top-right',
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    theme: 'colored',
+    displayToast: false,
+    // successMessage: 'Todos data retrieve',
+    // errorMessage: 'Todos data fetch error',
+    // toastPosition: 'top-right',
+    // hideProgressBar: false,
+    // closeOnClick: true,
+    // pauseOnHover: true,
+    // draggable: true,
+    // theme: 'colored',
   };
 
   const getTodosData = async () => {

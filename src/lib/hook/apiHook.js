@@ -10,33 +10,37 @@ export const useAxiosInterceptor = () => {
   const successHandler = (res, config) => {
     setData(res.data);
     setIsPending(false);
-    toast.success(config?.message || 'Success', {
-      position: config?.tostPosition,
-      autoClose: config?.delay || 5000,
-      hideProgressBar: config?.hideProgressBar,
-      closeOnClick: config.closeOnClick,
-      pauseOnHover: config?.pauseOnHover,
-      draggable: config.draggable,
-      progress: undefined,
-      rtl: false,
-      theme: config.theme,
-    });
+    if (config?.displayToast) {
+      toast.success(config?.message || 'Success', {
+        position: config?.tostPosition,
+        autoClose: config?.delay || 5000,
+        hideProgressBar: config?.hideProgressBar,
+        closeOnClick: config.closeOnClick,
+        pauseOnHover: config?.pauseOnHover,
+        draggable: config.draggable,
+        progress: undefined,
+        rtl: false,
+        theme: config.theme,
+      });
+    }
   };
 
   const errorHandler = (error, config) => {
     setError(error);
     setIsPending(false);
-    toast.error(config?.message || JSON.stringify(error.messages[0]), {
-      position: config?.tostPosition,
-      autoClose: config?.delay || 5000,
-      hideProgressBar: config?.hideProgressBar,
-      closeOnClick: config.closeOnClick,
-      pauseOnHover: config?.pauseOnHover,
-      draggable: config.draggable,
-      progress: undefined,
-      rtl: false,
-      theme: config.theme,
-    });
+    if (config?.displayToast) {
+      toast.error(config?.message || JSON.stringify(error.messages[0]), {
+        position: config?.tostPosition,
+        autoClose: config?.delay || 5000,
+        hideProgressBar: config?.hideProgressBar,
+        closeOnClick: config.closeOnClick,
+        pauseOnHover: config?.pauseOnHover,
+        draggable: config.draggable,
+        progress: undefined,
+        rtl: false,
+        theme: config.theme,
+      });
+    }
   };
 
   const apiHandler = useCallback(async config => {
@@ -70,5 +74,5 @@ export const useAxiosInterceptor = () => {
     });
   }, []);
 
-  return { data, isPending, apiHandler };
+  return { data, error, isPending, apiHandler };
 };

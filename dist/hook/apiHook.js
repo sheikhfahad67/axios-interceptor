@@ -26,34 +26,38 @@ const useAxiosInterceptor = () => {
     setData(res.data);
     setIsPending(false);
 
-    _reactToastify.toast.success((config === null || config === void 0 ? void 0 : config.message) || 'Success', {
-      position: config === null || config === void 0 ? void 0 : config.tostPosition,
-      autoClose: (config === null || config === void 0 ? void 0 : config.delay) || 5000,
-      hideProgressBar: config === null || config === void 0 ? void 0 : config.hideProgressBar,
-      closeOnClick: config.closeOnClick,
-      pauseOnHover: config === null || config === void 0 ? void 0 : config.pauseOnHover,
-      draggable: config.draggable,
-      progress: undefined,
-      rtl: false,
-      theme: config.theme
-    });
+    if (config !== null && config !== void 0 && config.displayToast) {
+      _reactToastify.toast.success((config === null || config === void 0 ? void 0 : config.message) || 'Success', {
+        position: config === null || config === void 0 ? void 0 : config.tostPosition,
+        autoClose: (config === null || config === void 0 ? void 0 : config.delay) || 5000,
+        hideProgressBar: config === null || config === void 0 ? void 0 : config.hideProgressBar,
+        closeOnClick: config.closeOnClick,
+        pauseOnHover: config === null || config === void 0 ? void 0 : config.pauseOnHover,
+        draggable: config.draggable,
+        progress: undefined,
+        rtl: false,
+        theme: config.theme
+      });
+    }
   };
 
   const errorHandler = (error, config) => {
     setError(error);
     setIsPending(false);
 
-    _reactToastify.toast.error((config === null || config === void 0 ? void 0 : config.message) || JSON.stringify(error.messages[0]), {
-      position: config === null || config === void 0 ? void 0 : config.tostPosition,
-      autoClose: (config === null || config === void 0 ? void 0 : config.delay) || 5000,
-      hideProgressBar: config === null || config === void 0 ? void 0 : config.hideProgressBar,
-      closeOnClick: config.closeOnClick,
-      pauseOnHover: config === null || config === void 0 ? void 0 : config.pauseOnHover,
-      draggable: config.draggable,
-      progress: undefined,
-      rtl: false,
-      theme: config.theme
-    });
+    if (config !== null && config !== void 0 && config.displayToast) {
+      _reactToastify.toast.error((config === null || config === void 0 ? void 0 : config.message) || JSON.stringify(error.messages[0]), {
+        position: config === null || config === void 0 ? void 0 : config.tostPosition,
+        autoClose: (config === null || config === void 0 ? void 0 : config.delay) || 5000,
+        hideProgressBar: config === null || config === void 0 ? void 0 : config.hideProgressBar,
+        closeOnClick: config.closeOnClick,
+        pauseOnHover: config === null || config === void 0 ? void 0 : config.pauseOnHover,
+        draggable: config.draggable,
+        progress: undefined,
+        rtl: false,
+        theme: config.theme
+      });
+    }
   };
 
   const apiHandler = (0, _react.useCallback)(async config => {
@@ -85,6 +89,7 @@ const useAxiosInterceptor = () => {
   }, []);
   return {
     data,
+    error,
     isPending,
     apiHandler
   };
