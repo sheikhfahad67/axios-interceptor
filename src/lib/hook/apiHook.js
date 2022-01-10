@@ -7,35 +7,35 @@ export const useAxiosInterceptor = () => {
   const [isPending, setIsPending] = useState(undefined);
   const [error, setError] = useState(null);
 
-  const successHandler = (res, message, delay) => {
+  const successHandler = (res, config) => {
     setData(res.data);
     setIsPending(false);
-    toast.success(message || 'Success', {
-      position: 'top-right',
-      autoClose: delay || 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
+    toast.success(config?.message || 'Success', {
+      position: config?.tostPosition,
+      autoClose: config?.delay || 5000,
+      hideProgressBar: config?.hideProgressBar,
+      closeOnClick: config.closeOnClick,
+      pauseOnHover: config?.pauseOnHover,
+      draggable: config.draggable,
       progress: undefined,
       rtl: false,
-      theme: 'colored',
+      theme: config.theme,
     });
   };
 
-  const errorHandler = (error, message, delay) => {
+  const errorHandler = (error, config) => {
     setError(error);
     setIsPending(false);
-    toast.error(message || JSON.stringify(error.messages[0]), {
-      position: 'top-right',
-      autoClose: delay || 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
+    toast.error(config?.message || JSON.stringify(error.messages[0]), {
+      position: config?.tostPosition,
+      autoClose: config?.delay || 5000,
+      hideProgressBar: config?.hideProgressBar,
+      closeOnClick: config.closeOnClick,
+      pauseOnHover: config?.pauseOnHover,
+      draggable: config.draggable,
       progress: undefined,
       rtl: false,
-      theme: 'colored',
+      theme: config.theme,
     });
   };
 
@@ -46,21 +46,21 @@ export const useAxiosInterceptor = () => {
         if (config?.method !== 'get' && config?.method !== 'delete') {
           return http[config?.method](config?.url, config?.data)
             .then(res => {
-              successHandler(res, config?.successMessage, config?.delay);
+              successHandler(res, config);
               resolve(true);
             })
             .catch(error => {
-              errorHandler(error, config?.errorMessage, config?.delay);
+              errorHandler(error, config);
               reject(false);
             });
         } else {
           http[config?.method](config?.url)
             .then(res => {
-              successHandler(res, config?.successMessage, config?.delay);
+              successHandler(res, config);
               resolve(true);
             })
             .catch(error => {
-              errorHandler(error, config?.errorMessage, config?.delay);
+              errorHandler(error, config);
               reject(false);
             });
         }

@@ -31,6 +31,12 @@ function App() {
     delay: 4000,
     successMessage: 'Todos data retrieve',
     errorMessage: 'Todos data fetch error',
+    toastPosition: 'top-right',
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    theme: 'colored',
   };
   const getTodosData = async () => {
     await apiHandler(config);
@@ -66,7 +72,7 @@ It will return following fields:
 | ---------- | :----: | --------------------------------------------------------------------------------------------: |
 | data       | Object |                                                    It return the response of api `(res.data)` |
 | isPending  |  Bool  | For loading purpose return `true` while fetching and return false after completion or failure |
-| apiHandler |  Func  |              Function to give yoy control over calling when you need just by passing `config` |
+| apiHandler |  Func  |              Function to give you control over calling when you need just by passing `config` |
 
 ### For Bearer Token
 
@@ -80,16 +86,22 @@ Please add env variable into your `.env` or `.env.local` file.
 
 > REACT_APP_BASE_URL="https://jsonplaceholder.typicode.com"
 
-### Config Perimeters
+### Config Props
 
-| Fields         |  Type  |                             Description |
-| -------------- | :----: | --------------------------------------: |
-| method         | string | 'get', 'post', 'put', 'delete', 'patch' |
-| url            | string |                it will be your endpoint |
-| delay          | number |                            default 5000 |
-| data           | Object |   required on post, put, patch requests |
-| successMessage | string |                           'Any Message' |
-| errorMessage   | string |                           'Any Message' |
+| Fields          |  Type  |                                                                           Description |
+| --------------- | :----: | ------------------------------------------------------------------------------------: |
+| method          | string |                                               'get', 'post', 'put', 'delete', 'patch' |
+| url             | string |                                                              it will be your endpoint |
+| delay           | number |                                                                          default 5000 |
+| data            | Object |                                                 required on post, put, patch requests |
+| successMessage  | string |                                                                         'Any Message' |
+| errorMessage    | string |                                                                         'Any Message' |
+| position        | string | 'top-right', 'top-left', 'top-center', 'bottom-left', 'bottom-right', 'bottom-center' |
+| hideProgressBar |  Bool  |                                                                     `true` or `false` |
+| closeOnClick    |  Bool  |                                                                     `true` or `false` |
+| pauseOnHover    |  Bool  |                                                                     `true` or `false` |
+| draggable       |  Bool  |                                                                     `true` or `false` |
+| theme           | string |                                                              'light','dark','colored' |
 
 ## License
 
