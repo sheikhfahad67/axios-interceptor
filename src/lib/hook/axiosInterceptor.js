@@ -55,7 +55,11 @@ instance.interceptors.response.use(
   error => {
     console.warn('Error status', error);
     if (error.response) {
-      return parseError(error.response.data);
+      if (error.response.data.message === 'Unauthenticated.') {
+        localStorage.removeItem('authToken');
+        return (window.location = '/');
+      }
+      return parseError(error.response);
     } else {
       return Promise.reject(error);
     }
