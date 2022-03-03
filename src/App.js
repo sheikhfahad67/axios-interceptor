@@ -5,12 +5,17 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const { data, isPending, apiHandler } = useAxiosInterceptor();
+  const formData = new FormData();
 
   const config = {
     method: 'get',
     url: '/todos',
     delay: 4000,
     displayToast: false,
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      // ...formData.getHeaders(),
+    },
     // successMessage: 'Todos data retrieve',
     // errorMessage: 'Todos data fetch error',
     // toastPosition: 'top-right',
